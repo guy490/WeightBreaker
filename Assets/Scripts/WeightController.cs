@@ -58,7 +58,10 @@ public class WeightController : MonoBehaviour
         Vector3 mouseCurrentWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(mouseDownWorldPosition, mouseCurrentWorldPosition);
         Vector2 direction = (mouseCurrentWorldPosition - mouseDownWorldPosition) / distance;
-        rb.AddForce(-direction * arrow.transform.localScale.y* force, ForceMode2D.Impulse);
+        if (!float.IsNaN(direction.x) && !float.IsNaN(direction.y))
+        {
+            rb.AddForce(-direction * arrow.transform.localScale.y * force, ForceMode2D.Impulse);
+        }
     }
 
     public void ResetRotation()

@@ -15,9 +15,9 @@ public class ScreenColliderSet : MonoBehaviour
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        Vector2 screenUpLimit = new Vector2(0,screenBounds.y + boxColliders[0].size.y);
-        Vector2 screenLeftLimit = new Vector2(-(screenBounds.x + boxColliders[1].size.x), 0);
-        Vector2 screenRightLimit =  new Vector2(screenBounds.x + boxColliders[2].size.x, 0);
+        Vector2 screenUpLimit = new Vector2(0,screenBounds.y + boxColliders[0].size.y + 0.3f);
+        Vector2 screenLeftLimit = new Vector2(-(screenBounds.x + boxColliders[1].size.x+0.3f), 0 );
+        Vector2 screenRightLimit =  new Vector2(screenBounds.x + boxColliders[2].size.x + 0.3f, 0);
 
 
         boxColliders[0].offset = screenUpLimit;
