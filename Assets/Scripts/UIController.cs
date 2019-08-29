@@ -6,12 +6,12 @@ public class UIController : MonoBehaviour
 {
     
     [SerializeField]
-    private GameObject stackView;
-    private Animator stackViewAnimator;
+    private Animator stackPanelView;
+    [SerializeField]
+    private Animator gameMenuButton;
     // Start is called before the first frame update
     void Start()
     {
-        stackViewAnimator = stackView.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,25 +19,36 @@ public class UIController : MonoBehaviour
     {
 
     }
-    public void SetPanel()
+    public void SetStackPanel()
     {
-        bool isPanelVisible = stackViewAnimator.GetCurrentAnimatorStateInfo(0).IsName("StackAnimationIn");
+        bool isPanelVisible = stackPanelView.GetCurrentAnimatorStateInfo(0).IsName("StackAnimationIn");
         if (isPanelVisible)
         {
-            HidePanel();
+            HideStackPanel();
+            ShowMenuButton();
+
         }
         else
         {
-            ShowPanel();
+            ShowStackPanel();
+            HideMenuButton();
+
         }
     }
-    private void ShowPanel()
+    private void ShowStackPanel()
     {
-        stackViewAnimator.Play("StackAnimationIn");
+        stackPanelView.Play("StackAnimationIn");
     }
-    private void HidePanel()
+    private void HideStackPanel()
     {
-        stackViewAnimator.Play("StackAnimationOut");
-
+        stackPanelView.Play("StackAnimationOut");
+    }
+    private void ShowMenuButton()
+    {
+        gameMenuButton.Play("ShowMenuButton");
+    }
+    private void HideMenuButton()
+    {
+        gameMenuButton.Play("HideMenuButton");
     }
 }
