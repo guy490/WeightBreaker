@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4214d6a9a3681234f9078dddd80c1f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 8
+  weight: 2
   woodText: {fileID: 5679323557825641189}
 --- !u!1 &5679323557801376537
 GameObject:

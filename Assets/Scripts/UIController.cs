@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     private Animator stackPanelView;
     [SerializeField]
     private Animator gameMenuButton;
+    [SerializeField]
+    private Animator menuPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,18 @@ public class UIController : MonoBehaviour
 
         }
     }
+    public void SetMenuPanel()
+    {
+        bool isPanelVisible = menuPanel.GetCurrentAnimatorStateInfo(0).IsName("ShowMenuPanel");
+        if (isPanelVisible)
+        {
+            HideMenuPanel();
+        }
+        else
+        {
+            ShowMenuPanel();
+        }
+    }
     private void ShowStackPanel()
     {
         stackPanelView.Play("StackAnimationIn");
@@ -50,5 +64,14 @@ public class UIController : MonoBehaviour
     private void HideMenuButton()
     {
         gameMenuButton.Play("HideMenuButton");
+    }
+
+    private void ShowMenuPanel()
+    {
+        menuPanel.Play("ShowMenuPanel");
+    }
+    private void HideMenuPanel()
+    {
+        menuPanel.Play("HideMenuPanel");
     }
 }
