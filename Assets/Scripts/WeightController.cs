@@ -22,11 +22,11 @@ public class WeightController : MonoBehaviour
             weight = value;
         }
     }
-
-    [SerializeField]
-    private GameObject arrow;
     [SerializeField]
     private float force;
+    [SerializeField]
+    private float maxDistance;
+
     [SerializeField]
     private TextMesh weightText;
     private Rigidbody2D rb;
@@ -55,23 +55,19 @@ public class WeightController : MonoBehaviour
     public void ThrowWeight()
     {
         Vector3 mouseDownWorldPosition = Camera.main.ScreenToWorldPoint(GameController.instance.MouseDownPosition);
-        Vector3 mouseCurrentWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float distance = Vector2.Distance(mouseDownWorldPosition, mouseCurrentWorldPosition);
-        Vector2 direction = (mouseCurrentWorldPosition - mouseDownWorldPosition) / distance;
+        Vector3 mouseUpWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distance = Vector2.Distance(mouseDownWorldPosition, mouseUpWorldPosition);
+        Vector2 direction = (mouseUpWorldPosition - mouseDownWorldPosition) / distance;
+        if(distance > 2)
+        {
+            distance = 2;
+        }
         if (!float.IsNaN(direction.x) && !float.IsNaN(direction.y))
         {
-            rb.AddForce(-direction * arrow.transform.localScale.y * force, ForceMode2D.Impulse);
+            rb.AddForce(direction * distance * force, ForceMode2D.Impulse);
         }
     }
 
-    public void ResetRotation()
-    {
-       
-        if (BetweenPositiveAngles() || BetweenNegativeAngles())
-        {
-            gameObject.transform.rotation = Quaternion.identity;
-        }
-    }
     private bool BetweenPositiveAngles()
     {
         Vector3 currentRotation = gameObject.transform.rotation.eulerAngles;
