@@ -17,7 +17,7 @@ public class Trigger : MonoBehaviour
     {
         float weightValue = col.GetComponent<WeightController>().Weight;
         weightSum += weightValue;
-        if (weightSum > woodValue)
+        if (weightSum >= woodValue)
         {
             Invoke("BreakTheWood", 0.5f);
         }
@@ -32,7 +32,7 @@ public class Trigger : MonoBehaviour
 
     private void BreakTheWood()
     {
-        if (weightSum > woodValue)//double check if it still on it
+        if (weightSum >= woodValue)//double check if it still on it
         {
             GetComponentInParent<Animator>().enabled = true;
             Destroy(transform.parent.gameObject, 1.1f);

@@ -57,14 +57,15 @@ public class WeightController : MonoBehaviour
         Vector3 mouseDownWorldPosition = Camera.main.ScreenToWorldPoint(GameController.instance.MouseDownPosition);
         Vector3 mouseUpWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(mouseDownWorldPosition, mouseUpWorldPosition);
-        Vector2 direction = (mouseUpWorldPosition - mouseDownWorldPosition) / distance;
-        if(distance > 2)
+        if (distance > maxDistance)
         {
-            distance = 2;
+            distance = maxDistance;
         }
+        Vector2 direction = (mouseUpWorldPosition - transform.position) / Vector2.Distance(mouseUpWorldPosition ,transform.position);
+        
         if (!float.IsNaN(direction.x) && !float.IsNaN(direction.y))
         {
-            rb.AddForce(direction * distance * force, ForceMode2D.Impulse);
+            rb.AddForce(direction * distance*  force, ForceMode2D.Impulse);
         }
     }
 

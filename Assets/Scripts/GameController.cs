@@ -7,13 +7,11 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     [SerializeField]
-    private GameObject preview;
-    [SerializeField]
     private GameObject errorText;
+    [SerializeField]
+    private GameObject arrow;
     private bool mouseIsDown = false;
     public Vector3 MouseDownPosition { get; private set; }
-    private float lastActionTime;
-    private float maxTime;
 
     void Awake()
     {
@@ -25,8 +23,6 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxTime = 5f;
-        InvokeRepeating("StartPreview", 0f, 10f);
     }
 
     // Update is called once per frame
@@ -38,7 +34,9 @@ public class GameController : MonoBehaviour
             MouseButtonRecognition();
             if (mouseIsDown)
             {
-                lastActionTime = Time.time;
+                arrow.SetActive(true);
+                ArrowController.instance.FollowArrowToMousePosition();
+                ArrowController.instance.SetArrowLengthRelativeToMouse();
             }
         }
         else
@@ -66,13 +64,14 @@ public class GameController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            StopPreview();
             mouseIsDown = true;
+            arrow.SetActive(true);
             MouseDownPosition = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             mouseIsDown = false;
+            arrow.SetActive(false);
             WeightController.instance.ThrowWeight();
         }
 
@@ -85,19 +84,6 @@ public class GameController : MonoBehaviour
         return rb.IsSleeping();
     }
 
-    private void StopPreview()
-    {
-
-    }
-    private void StartPreview()
-    {
-
-    }
-    private bool IsPlayerSleeping()
-    {
-        float currentTime = Time.time;
-        return ((currentTime - lastActionTime) >= maxTime);
-    }
 
 
 }
