@@ -2,17 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
     [SerializeField]
     private GameObject preview;
-    [SerializeField]
-    private GameObject arrow;
-    [SerializeField]
-    private GameObject mouseRelativePoint;
     [SerializeField]
     private GameObject errorText;
     private bool mouseIsDown = false;
@@ -40,14 +35,10 @@ public class GameController : MonoBehaviour
 
         if (ObjectIsNotMoving())
         {
-            ResetWeightRotation();
             MouseButtonRecognition();
             if (mouseIsDown)
             {
                 lastActionTime = Time.time;
-                arrow.SetActive(true);
-                ArrowController.instance.FollowArrowToMousePosition();
-                ArrowController.instance.SetArrowLengthRelativeToMouse();
             }
         }
         else
@@ -76,56 +67,31 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StopPreview();
-            arrow.SetActive(true);
-            mouseRelativePoint.SetActive(true);
             mouseIsDown = true;
             MouseDownPosition = Input.mousePosition;
-            SetRedDot();
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             mouseIsDown = false;
-            mouseRelativePoint.SetActive(false);
-            arrow.SetActive(false);
             WeightController.instance.ThrowWeight();
         }
 
     }
 
-    private void SetRedDot()
-    {
-        Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(MouseDownPosition);
-        mouseRelativePoint.transform.position = new Vector3(mouseWorldPoint.x, mouseWorldPoint.y, 0); 
-
-    }
-
-    
     private bool ObjectIsNotMoving()
     {
         
         Rigidbody2D rb = WeightController.instance.gameObject.GetComponent<Rigidbody2D>();
         return rb.IsSleeping();
     }
-    private void ResetWeightRotation()
-    {
-        WeightController.instance.ResetRotation();
-    }
-    
-    public void Restart()
-    {
-        SceneManager.LoadScene("Level1");
-    }
 
     private void StopPreview()
     {
-        if (preview.activeSelf)
-            preview.SetActive(false);   
+
     }
     private void StartPreview()
     {
-        preview.transform.Find("Arrow").position = arrow.transform.position;
-        if (!preview.activeSelf && ObjectIsNotMoving() && IsPlayerSleeping())
-            preview.SetActive(true);
+
     }
     private bool IsPlayerSleeping()
     {
