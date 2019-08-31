@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject errorText;
     [SerializeField]
-    private GameObject arrow;
+    private GameObject selectedWeight;
+    private GameObject selectedWeightArrow;
     private bool mouseIsDown = false;
     public Vector3 MouseDownPosition { get; private set; }
 
@@ -23,20 +24,19 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (ObjectIsNotMoving())
+        if (ObjectIsNotMoving() )
         {
             MouseButtonRecognition();
             if (mouseIsDown)
             {
-                arrow.SetActive(true);
-                ArrowController.instance.FollowArrowToMousePosition();
-                ArrowController.instance.SetArrowLengthRelativeToMouse();
+                ControlTheArrow();
             }
         }
         else
@@ -65,14 +65,14 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mouseIsDown = true;
-            arrow.SetActive(true);
+            selectedWeightArrow.SetActive(true);
             MouseDownPosition = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             mouseIsDown = false;
-            arrow.SetActive(false);
-            WeightController.instance.ThrowWeight();
+            selectedWeightArrow.SetActive(false);
+            selectedWeight.GetComponent<WeightController>().ThrowWeight();
         }
 
     }
@@ -80,10 +80,24 @@ public class GameController : MonoBehaviour
     private bool ObjectIsNotMoving()
     {
         
-        Rigidbody2D rb = WeightController.instance.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = selectedWeight.GetComponent<Rigidbody2D>();
         return rb.IsSleeping();
     }
-
+    private void ControlTheArrow()
+    {
+        if (selectedWeightArrow.GetComponent<ArrowController>().isActiveAndEnabled)
+        {
+            //arrow.SetActive(true);
+            selectedWeightArrow.GetComponent<ArrowController>().FollowArrowToMousePosition();
+            selectedWeightArrow.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
+        }
+    }
+    
+    public void SetSelectedWeight(GameObject selectedWeight)
+    {
+        this.selectedWeight = selectedWeight;
+        this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
+    }
 
 
 }
