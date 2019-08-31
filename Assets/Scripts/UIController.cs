@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class UIController : MonoBehaviour
 {
     
@@ -73,9 +73,5 @@ public class UIController : MonoBehaviour
     private void HideMenuPanel()
     {
         menuPanel.Play("HideMenuPanel");
-    }
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
