@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5679323556798329739}
   - component: {fileID: 5679323556798329738}
   m_Layer: 9
-  m_Name: WoodTrigger
+  m_Name: TriggerChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5679323556798329741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0099240161fe6d45bcecb016a3226dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 438da8bde3e74584c84f02a1c30b9a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5679323556966203971
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 5679323557062405433}
   m_Layer: 9
   m_Name: Wood
-  m_TagString: Wood
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,10 +306,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5679323557062405437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9ff09b94610be748b8e159e84e6198b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4214d6a9a3681234f9078dddd80c1f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
+  weight: 8
   woodText: {fileID: 5679323557825641189}
 --- !u!1 &5679323557801376537
 GameObject:

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodTrigger : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
     private float weightSum;
     private float woodValue;
@@ -15,26 +15,19 @@ public class WoodTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Weight")
+        float weightValue = col.GetComponent<WeightController>().Weight;
+        weightSum += weightValue;
+        if (weightSum >= woodValue)
         {
-            float weightValue = col.GetComponent<WeightController>().Weight;
-            weightSum += weightValue;
-            if (weightSum >= woodValue)
-            {
-                Invoke("BreakTheWood", 0.5f);
-            }
-            col.GetComponent<WeightController>().enabled = false;
+            Invoke("BreakTheWood", 0.5f);
         }
         
+
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Weight")
-        {
-            col.GetComponent<WeightController>().enabled = true;
-            float weightValue = col.GetComponent<WeightController>().Weight;
-            weightSum -= weightValue;
-        }
+        float weightValue = col.GetComponent<WeightController>().Weight;
+        weightSum -= weightValue;
     }
 
     private void BreakTheWood()

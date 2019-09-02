@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7586698584323609463}
   m_Layer: 10
   m_Name: WeightSprite
-  m_TagString: Weight
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,10 +180,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7586698584323609461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ceef0af0bdfc1448b12f2522ee6314, type: 3}
+  m_Script: {fileID: 11500000, guid: 069f4af3bfb564f4ab71dff239052213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 5
+  weight: 0
   force: 7
   maxDistance: 2
   weightText: {fileID: 7586698585869225125}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7586698585469177050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a085445ec721c4bafb8e4cc6944225, type: 3}
+  m_Script: {fileID: 11500000, guid: 901d451d54691714386a417cfb0359c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   arrowMaxLength: 2
