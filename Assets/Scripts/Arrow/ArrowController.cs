@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour
 {
+    public static ArrowController instance;
     [SerializeField]
     private float arrowMaxLength;
     [SerializeField]
@@ -11,7 +12,13 @@ public class ArrowController : MonoBehaviour
     private Vector2 mouseDownPosition;
     private Vector2 mouseCurrentPosition;
     private Vector3 arrowScale;
-
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
 
     void Start()

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class WeightController : MonoBehaviour
 {
+    public static WeightController instance;
+    private const float maxPositiveRotation = 250f;
+    private const float minPositiveRotation = 110f;
+    private const float maxNegativeRotation = -110f;
+    private const float minNegativeRotation = -250f;
     [SerializeField]
     private float weight;
-    [SerializeField]
-    private float force;
-    [SerializeField]
-    private float maxDistance;
-    [SerializeField]
-    private TextMesh weightText;
-    private Rigidbody2D rb;
     public float Weight
     {
         get
@@ -24,7 +22,24 @@ public class WeightController : MonoBehaviour
             weight = value;
         }
     }
+    [SerializeField]
+    private float force;
+    [SerializeField]
+    private float maxDistance;
 
+    [SerializeField]
+    private TextMesh weightText;
+    private Rigidbody2D rb;
+
+
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -54,11 +69,15 @@ public class WeightController : MonoBehaviour
         }
     }
 
-    public void setWeightText(float weight)
+    private bool BetweenPositiveAngles()
     {
-        Weight = weight;
-        weightText.text = Weight + "KG";
+        Vector3 currentRotation = gameObject.transform.rotation.eulerAngles;
+        return currentRotation.z <= maxPositiveRotation && currentRotation.z >= minPositiveRotation;
     }
-
+    private bool BetweenNegativeAngles()
+    {
+        Vector3 currentRotation = gameObject.transform.rotation.eulerAngles;
+        return currentRotation.z <= maxNegativeRotation && currentRotation.z >= minNegativeRotation;
+    }
 
 }
