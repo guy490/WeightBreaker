@@ -31,7 +31,19 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
-        if (ObjectIsNotMoving() )
+        if (WeightIsNotOnWood())
+        {
+            ControlTheWeight();
+        }
+
+    }
+    private bool WeightIsNotOnWood()
+    {
+        return selectedWeight.GetComponent<WeightController>().isActiveAndEnabled;
+    }
+    private void ControlTheWeight()
+    {
+        if (ObjectIsNotMoving())
         {
             MouseButtonRecognition();
             if (mouseIsDown)
@@ -47,7 +59,6 @@ public class GameController : MonoBehaviour
                 Invoke("RemoveErrorMessage", 1.5f);
             }
         }
-
     }
 
     private void ShowErrorMessage()
@@ -87,7 +98,6 @@ public class GameController : MonoBehaviour
     {
         if (selectedWeightArrow.GetComponent<ArrowController>().isActiveAndEnabled)
         {
-            //arrow.SetActive(true);
             selectedWeightArrow.GetComponent<ArrowController>().FollowArrowToMousePosition();
             selectedWeightArrow.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
         }
@@ -98,6 +108,9 @@ public class GameController : MonoBehaviour
         this.selectedWeight = selectedWeight;
         this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
     }
-
+    public GameObject GetSelectedWeight()
+    {
+        return gameObject;
+    }
 
 }

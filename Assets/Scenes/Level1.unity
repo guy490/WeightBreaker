@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 504659834}
   - component: {fileID: 504659833}
   - component: {fileID: 504659832}
+  - component: {fileID: 504659836}
   m_Layer: 8
   m_Name: GrassSprite
   m_TagString: Untagged
@@ -395,6 +396,32 @@ Transform:
   m_Father: {fileID: 1986339866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &504659836
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504659831}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.45354578}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.24}
+    newSize: {x: 10.24, y: 10.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.24, y: 2.4947462}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +575,7 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
@@ -1334,7 +1361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1207648406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065f031d5e4dee945b2a631e9227984d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fe8e927316b2d84693267d18c3ab231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1237433796
@@ -1710,7 +1737,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590616652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f586ce89a607c41865834ecb9c1921, type: 3}
+  m_Script: {fileID: 11500000, guid: 31957e35a79728a45ba4d104b1dd261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stackPanelView: {fileID: 1067779519}
@@ -2014,6 +2041,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3699156289470681226}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2069940932
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069940931}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0220528a00984f64ca3eb1bdf8ed8672, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2134673377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeightSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 7586698584323609461, guid: 861496c6761f8b947b360b4f25fb95fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7586698584323609460, guid: 861496c6761f8b947b360b4f25fb95fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2139,14 +2190,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7586698584323609463, guid: 861496c6761f8b947b360b4f25fb95fb,
+    - target: {fileID: 7586698584323609460, guid: 861496c6761f8b947b360b4f25fb95fb,
         type: 3}
-      propertyPath: weight
-      value: 5
+      propertyPath: m_LocalScale.x
+      value: 0.29756376
       objectReference: {fileID: 0}
-    - target: {fileID: 7548686522376697126, guid: 861496c6761f8b947b360b4f25fb95fb,
+    - target: {fileID: 7586698584323609460, guid: 861496c6761f8b947b360b4f25fb95fb,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_LocalScale.y
+      value: 0.2943281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586698584323609448, guid: 861496c6761f8b947b360b4f25fb95fb,
+        type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
