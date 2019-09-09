@@ -21,7 +21,9 @@ public class WeightController : MonoBehaviour
         }
         set
         {
+            
             weight = value;
+            weightText.text = weight + "KG";
         }
     }
 
@@ -41,6 +43,7 @@ public class WeightController : MonoBehaviour
     {
         Vector3 mouseDownWorldPosition = Camera.main.ScreenToWorldPoint(GameController.instance.MouseDownPosition);
         Vector3 mouseUpWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         float distance = Vector2.Distance(mouseDownWorldPosition, mouseUpWorldPosition);
         if (distance > maxDistance)
         {
@@ -53,12 +56,5 @@ public class WeightController : MonoBehaviour
             rb.AddForce(direction * distance*  force, ForceMode2D.Impulse);
         }
     }
-
-    public void setWeightText(float weight)
-    {
-        Weight = weight;
-        weightText.text = Weight + "KG";
-    }
-
 
 }

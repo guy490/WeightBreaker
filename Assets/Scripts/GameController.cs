@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
@@ -30,13 +30,19 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (ObjectIsNotMoving() )
         {
-            MouseButtonRecognition();
-            if (mouseIsDown)
+            if (selectedWeight.GetComponent<WeightController>().enabled)
             {
-                ControlTheArrow();
+                MouseButtonRecognition();
+                if (mouseIsDown)
+                {
+                    ControlTheArrow();
+                }
             }
         }
         else
@@ -85,18 +91,18 @@ public class GameController : MonoBehaviour
     }
     private void ControlTheArrow()
     {
-        if (selectedWeightArrow.GetComponent<ArrowController>().isActiveAndEnabled)
-        {
-            //arrow.SetActive(true);
-            selectedWeightArrow.GetComponent<ArrowController>().FollowArrowToMousePosition();
-            selectedWeightArrow.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
-        }
+        selectedWeightArrow.GetComponent<ArrowController>().FollowArrowToMousePosition();
+        selectedWeightArrow.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
     }
     
     public void SetSelectedWeight(GameObject selectedWeight)
     {
         this.selectedWeight = selectedWeight;
         this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
+    }
+    public GameObject GetSelectedWeight()
+    {
+        return selectedWeight;
     }
 
 
