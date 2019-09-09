@@ -43,6 +43,7 @@ public class WoodTrigger : MonoBehaviour
         {
             GetComponentInParent<Animator>().enabled = true;
             Destroy(transform.parent.gameObject, 1.1f);
+            //ScoreManager.instance.incrementScore();
         }
 
     }

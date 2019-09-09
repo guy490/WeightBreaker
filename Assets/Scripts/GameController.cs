@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour
             mouseIsDown = true;
             selectedWeightArrow.SetActive(true);
             MouseDownPosition = Input.mousePosition;
+            ScoreManager.instance.incrementScore();
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {

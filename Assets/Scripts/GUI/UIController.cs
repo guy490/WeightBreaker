@@ -2,25 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class UIController : MonoBehaviour
 {
-    
+    public static UIController instance;
     [SerializeField]
     private Animator stackPanelView;
     [SerializeField]
     private Animator gameMenuButton;
     [SerializeField]
     private Animator menuPanel;
+    [SerializeField]
+    private GameObject scoreUI;
+
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetScore(int score)
     {
-
+        scoreUI.GetComponent<Text>().text = "Moves: " + score;
     }
+
     public void SetStackPanel()
     {
         bool isPanelVisible = stackPanelView.GetCurrentAnimatorStateInfo(0).IsName("StackAnimationIn");
@@ -49,6 +62,8 @@ public class UIController : MonoBehaviour
             ShowMenuPanel();
         }
     }
+
+
     private void ShowStackPanel()
     {
         stackPanelView.Play("StackAnimationIn");
