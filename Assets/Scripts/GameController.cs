@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
@@ -10,7 +12,7 @@ public class GameController : MonoBehaviour
     private GameObject errorText;
     [SerializeField]
     private GameObject selectedWeight;
-    private GameObject selectedWeightArrow;
+    private GameObject selectedArrowWeight;
     private bool mouseIsDown = false;
     public Vector3 MouseDownPosition { get; private set; }
 
@@ -24,7 +26,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
+        this.selectedArrowWeight = selectedWeight.transform.Find("Arrow").gameObject;
     }
 
     // Update is called once per frame
@@ -71,14 +73,14 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mouseIsDown = true;
-            selectedWeightArrow.SetActive(true);
+            selectedArrowWeight.SetActive(true);
             MouseDownPosition = Input.mousePosition;
             ScoreManager.instance.incrementScore();
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             mouseIsDown = false;
-            selectedWeightArrow.SetActive(false);
+            selectedArrowWeight.SetActive(false);
             selectedWeight.GetComponent<WeightController>().ThrowWeight();
         }
 
@@ -92,19 +94,22 @@ public class GameController : MonoBehaviour
     }
     private void ControlTheArrow()
     {
-        selectedWeightArrow.GetComponent<ArrowController>().FollowArrowToMousePosition();
-        selectedWeightArrow.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
+        selectedArrowWeight.GetComponent<ArrowController>().FollowArrowToMousePosition();
+        selectedArrowWeight.GetComponent<ArrowController>().SetArrowLengthRelativeToMouse();
     }
     
     public void SetSelectedWeight(GameObject selectedWeight)
     {
         this.selectedWeight = selectedWeight;
-        this.selectedWeightArrow = selectedWeight.transform.Find("Arrow").gameObject;
+        this.selectedArrowWeight = selectedWeight.transform.Find("Arrow").gameObject;
     }
     public GameObject GetSelectedWeight()
     {
         return selectedWeight;
     }
 
-
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

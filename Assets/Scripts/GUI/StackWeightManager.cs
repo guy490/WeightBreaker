@@ -21,15 +21,26 @@ public class StackWeightManager : MonoBehaviour
     void Start()
     {
         weightList = new Dictionary<float, GameObject>();
+        FillTheWeightList();
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         
     }
-
-    public void AddCurrentdWeightToGUI(GameObject weightObj)
+    private void FillTheWeightList()
+    {
+        float weight;
+       foreach(Transform child in transform)
+        {
+            weight = child.GetComponent<WeightGUIObject>().Weight;
+            AddWeightToList(weight, child.gameObject);
+        }
+    }
+    public void AddCollidedWeightToGUI(GameObject weightObj)
     {
         float weightValue = weightObj.GetComponent<WeightController>().Weight;
         if (weightList.ContainsKey(weightValue))
@@ -45,11 +56,14 @@ public class StackWeightManager : MonoBehaviour
 
     private void AddNewWeightToGUI(GameObject weightObj,float weightValue)
     {
-        GameObject weightButton = Instantiate(prebafWeight, transform) as GameObject;
-        weightList.Add(weightValue, weightButton);
-        weightButton.GetComponent<WeightGUIObject>().Weight = weightObj.GetComponent<WeightController>().Weight;
+        GameObject weightGUI = Instantiate(prebafWeight, transform) as GameObject;
+        AddWeightToList(weightValue, weightGUI);
+        weightGUI.GetComponent<WeightGUIObject>().Weight = weightObj.GetComponent<WeightController>().Weight;
     }
-
+    private void AddWeightToList(float weightValue, GameObject weightGUI)
+    {
+       weightList.Add(weightValue, weightGUI);
+    }
     public void DeleteWeightFromList(float weightValue)
     {
         Destroy(weightList[weightValue]);

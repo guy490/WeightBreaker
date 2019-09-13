@@ -1,16 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
-    [SerializeField]
-    private Animator stackPanelView;
-    [SerializeField]
-    private Animator gameMenuButton;
     [SerializeField]
     private Animator menuPanel;
     [SerializeField]
@@ -34,22 +29,6 @@ public class UIController : MonoBehaviour
         scoreUI.GetComponent<Text>().text = "Moves: " + score;
     }
 
-    public void SetStackPanel()
-    {
-        bool isPanelVisible = stackPanelView.GetCurrentAnimatorStateInfo(0).IsName("StackAnimationIn");
-        if (isPanelVisible)
-        {
-            HideStackPanel();
-            ShowMenuButton();
-
-        }
-        else
-        {
-            ShowStackPanel();
-            HideMenuButton();
-
-        }
-    }
     public void SetMenuPanel()
     {
         bool isPanelVisible = menuPanel.GetCurrentAnimatorStateInfo(0).IsName("ShowMenuPanel");
@@ -64,23 +43,6 @@ public class UIController : MonoBehaviour
     }
 
 
-    private void ShowStackPanel()
-    {
-        stackPanelView.Play("StackAnimationIn");
-    }
-    private void HideStackPanel()
-    {
-        stackPanelView.Play("StackAnimationOut");
-    }
-    private void ShowMenuButton()
-    {
-        gameMenuButton.Play("ShowMenuButton");
-    }
-    private void HideMenuButton()
-    {
-        gameMenuButton.Play("HideMenuButton");
-    }
-
     private void ShowMenuPanel()
     {
         menuPanel.Play("ShowMenuPanel");
@@ -89,8 +51,5 @@ public class UIController : MonoBehaviour
     {
         menuPanel.Play("HideMenuPanel");
     }
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+
 }

@@ -19,9 +19,10 @@ public class WoodTrigger : MonoBehaviour
         {
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum += weightValue;
+
             if (weightSum >= woodValue)
             {
-                Invoke("BreakTheWood", 0.5f);
+                Invoke("BreakTheWood", 1f);
             }
             col.GetComponent<WeightController>().enabled = false;
         }
@@ -47,4 +48,5 @@ public class WoodTrigger : MonoBehaviour
         }
 
     }
+
 }

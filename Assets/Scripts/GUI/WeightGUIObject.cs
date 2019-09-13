@@ -11,7 +11,9 @@ public class WeightGUIObject : MonoBehaviour, IPointerClickHandler
     private Text AmountGUI;
     [SerializeField]
     private GameObject prefab;
+    [SerializeField]
     private float weight;
+    [SerializeField]
     private float amount;
     public float Weight
     {
@@ -37,11 +39,9 @@ public class WeightGUIObject : MonoBehaviour, IPointerClickHandler
             AmountGUI.text = "x" + amount;
         }
     }
-
     void Awake()
     {
-        weight = 0;
-        amount = 1;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -67,17 +67,17 @@ public class WeightGUIObject : MonoBehaviour, IPointerClickHandler
         {
             StackWeightManager.instance.DeleteWeightFromList(weight);
         }
-        if (WeightIsAvailable(selectedWeight))
+        if (WeightCanBePlayed(selectedWeight))
         {
+            StackWeightManager.instance.AddCollidedWeightToGUI(selectedWeight);
             Destroy(selectedWeight);
-            StackWeightManager.instance.AddCurrentdWeightToGUI(selectedWeight);
         }
         GameObject obj = Instantiate(prefab);
         GameController.instance.SetSelectedWeight(obj);
 
     }
 
-    private bool WeightIsAvailable(GameObject gameObjectParam)
+    private bool WeightCanBePlayed(GameObject gameObjectParam)
     {
         return gameObjectParam.GetComponent<WeightController>().enabled;
     }

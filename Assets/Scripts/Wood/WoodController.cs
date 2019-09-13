@@ -30,6 +30,21 @@ public class WoodController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    void OnDestroy()
+    {
+        if (NoWoodsLeft())
+        {
+
+        }
+    }
+    private bool NoWoodsLeft()
+    {
+        return WoodsLeft() == 0;
+    }
+    private int WoodsLeft()
+    {
+        return WoodsManager.instance.WoodsLeft();
     }
 }
