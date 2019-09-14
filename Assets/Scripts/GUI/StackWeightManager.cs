@@ -69,4 +69,9 @@ public class StackWeightManager : MonoBehaviour
         Destroy(weightList[weightValue]);
         weightList.Remove(weightValue);
     }
+
+    public int CountWeightsLeft()
+    {
+        return transform.childCount;
+    }
 }

@@ -36,12 +36,15 @@ public class WoodController : MonoBehaviour
     {
         if (NoWoodsLeft())
         {
+            InGameMenuController.instance.ShowGoodMessage();
+            InGameMenuController.instance.ShowNextLevelButton();
+            UIController.instance.SetMenuPanel();
 
         }
     }
     private bool NoWoodsLeft()
     {
-        return WoodsLeft() == 0;
+        return WoodsLeft() == 1;
     }
     private int WoodsLeft()
     {

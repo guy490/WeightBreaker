@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     [SerializeField]
     private GameObject errorText;
-    [SerializeField]
     private GameObject selectedWeight;
     private GameObject selectedArrowWeight;
     private bool mouseIsDown = false;
@@ -26,7 +25,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.selectedArrowWeight = selectedWeight.transform.Find("Arrow").gameObject;
+        selectedWeight = transform.Find("WeightSprite").gameObject;
+        selectedArrowWeight = selectedWeight.transform.Find("Arrow").gameObject;
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    private bool ObjectIsNotMoving()
+    public bool ObjectIsNotMoving()
     {
         
         Rigidbody2D rb = selectedWeight.GetComponent<Rigidbody2D>();
@@ -111,5 +111,17 @@ public class GameController : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void NextLevel()
+    {
+
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if(currentSceneIndex+1 < sceneCount)
+        {
+            SceneManager.LoadScene(currentSceneIndex + 1);
+
+        }
     }
 }

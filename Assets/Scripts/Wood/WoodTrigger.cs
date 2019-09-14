@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,15 +20,32 @@ public class WoodTrigger : MonoBehaviour
         {
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum += weightValue;
-
-            if (weightSum >= woodValue)
-            {
-                Invoke("BreakTheWood", 1f);
-            }
+            StartCoroutine(CheckGameStatus());
             col.GetComponent<WeightController>().enabled = false;
         }
         
     }
+
+    private IEnumerator CheckGameStatus()
+    {
+        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
+        if (weightSum >= woodValue)
+        {
+            Invoke("BreakTheWood", 1f);
+        }
+        else if (NoWeightsLeft())
+        {
+            Invoke("GameOver", 1f);
+
+        }
+        StopCoroutine(CheckGameStatus());
+
+    }
+    private bool NoWeightsLeft()
+    {
+        return StackWeightManager.instance.CountWeightsLeft() == 0;
+    }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Weight")
@@ -47,6 +65,15 @@ public class WoodTrigger : MonoBehaviour
             //ScoreManager.instance.incrementScore();
         }
 
+    }
+
+    private void GameOver()
+    {
+        if (NoWeightsLeft())//Double Check
+        {
+            InGameMenuController.instance.ShowGameOver();
+            UIController.instance.SetMenuPanel();
+        }
     }
 
 }
