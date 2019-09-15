@@ -8,7 +8,6 @@ public class StackWeightManager : MonoBehaviour
     public static StackWeightManager instance;
     [SerializeField]
     private GameObject prebafWeight;
-
     private Dictionary<float, GameObject> weightList;
     // Start is called before the first frame update
     void Awake()

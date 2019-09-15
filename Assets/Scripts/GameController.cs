@@ -12,6 +12,10 @@ public class GameController : MonoBehaviour
     private GameObject errorText;
     [SerializeField]
     private float minimumDistance;
+    [SerializeField]
+    private GameObject weightsContainer;
+
+
     private GameObject selectedWeight;
     private GameObject selectedArrowWeight;
     private bool mouseIsDown = false;
@@ -27,7 +31,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectedWeight = transform.Find("WeightSprite").gameObject;
+        selectedWeight = weightsContainer.transform.Find("WeightSprite").gameObject;
         selectedArrowWeight = selectedWeight.transform.Find("Arrow").gameObject;
     }
 
@@ -131,5 +135,10 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(currentSceneIndex + 1);
 
         }
+    }
+
+    public GameObject GetWeightsContainer()
+    {
+        return weightsContainer;
     }
 }

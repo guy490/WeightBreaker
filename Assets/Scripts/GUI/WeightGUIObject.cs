@@ -72,7 +72,9 @@ public class WeightGUIObject : MonoBehaviour, IPointerClickHandler
             StackWeightManager.instance.AddCollidedWeightToGUI(selectedWeight);
             Destroy(selectedWeight);
         }
-        GameObject obj = Instantiate(prefab);
+
+        GameObject weightsContainer = GameController.instance.GetWeightsContainer();
+        GameObject obj = Instantiate(prefab, weightsContainer.transform);
         GameController.instance.SetSelectedWeight(obj);
 
     }

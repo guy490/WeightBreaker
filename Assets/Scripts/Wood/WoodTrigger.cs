@@ -18,6 +18,8 @@ public class WoodTrigger : MonoBehaviour
     {
         if (col.tag == "Weight")
         {
+            col.GetComponent<WeightController>().enabled = false;
+
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum += weightValue;
             if (weightSum >= woodValue)
@@ -29,16 +31,34 @@ public class WoodTrigger : MonoBehaviour
                 StartCoroutine("GameOver");
 
             }
-            col.GetComponent<WeightController>().enabled = false;
         }
         
     }
-
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (weightSum >= woodValue)
+        {
+            col.GetComponent<WeightController>().enabled = true;
+        }
+    }
     private bool NoWeightsLeft()
     {
-        return StackWeightManager.instance.CountWeightsLeft() == 0;
-    }
 
+        return StackWeightManager.instance.CountWeightsLeft() == 0 && IsAllWeightsDisabled();
+    }
+    private bool IsAllWeightsDisabled()
+    {
+        GameObject weightsContainer = GameController.instance.GetWeightsContainer();
+        WeightController[] weightsControllers =  weightsContainer.GetComponentsInChildren<WeightController>();
+        foreach(WeightController component in weightsControllers)
+        {
+            if (component.enabled)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Weight")
