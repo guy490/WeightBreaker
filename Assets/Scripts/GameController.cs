@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     [SerializeField]
     private GameObject errorText;
+    [SerializeField]
+    private float minimumDistance;
     private GameObject selectedWeight;
     private GameObject selectedArrowWeight;
     private bool mouseIsDown = false;
@@ -75,13 +77,19 @@ public class GameController : MonoBehaviour
             mouseIsDown = true;
             selectedArrowWeight.SetActive(true);
             MouseDownPosition = Input.mousePosition;
-            ScoreManager.instance.incrementScore();
         }
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
-            mouseIsDown = false;
-            selectedArrowWeight.SetActive(false);
-            selectedWeight.GetComponent<WeightController>().ThrowWeight();
+            float distance = Math.Abs(Vector2.Distance(MouseDownPosition, Input.mousePosition));
+            if(distance >= minimumDistance)
+            {
+                ScoreManager.instance.incrementScore();
+                mouseIsDown = false;
+                selectedArrowWeight.SetActive(false);
+                selectedWeight.GetComponent<WeightController>().ThrowWeight();
+            }
+            
+            
         }
 
     }

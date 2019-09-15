@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorText: {fileID: 2020156408514059696}
+  minimumDistance: 0.1
 --- !u!210 &5970884437575674903
 SortingGroup:
   m_ObjectHideFlags: 0
