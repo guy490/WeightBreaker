@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ceef0af0bdfc1448b12f2522ee6314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 8
+  weight: 10
   force: 6.5
   maxDistance: 2
   weightText: {fileID: 7586698585869225125}
@@ -412,7 +412,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7586698585869225120}
-  m_Text: 8KG
+  m_Text: 10KG
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

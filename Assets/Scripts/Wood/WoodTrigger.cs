@@ -20,27 +20,20 @@ public class WoodTrigger : MonoBehaviour
         {
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum += weightValue;
-            StartCoroutine(CheckGameStatus());
+            if (weightSum >= woodValue)
+            {
+                StartCoroutine("BreakTheWood");
+            }
+            else if (NoWeightsLeft())
+            {
+                StartCoroutine("GameOver");
+
+            }
             col.GetComponent<WeightController>().enabled = false;
         }
         
     }
 
-    private IEnumerator CheckGameStatus()
-    {
-        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
-        if (weightSum >= woodValue)
-        {
-            Invoke("BreakTheWood", 1f);
-        }
-        else if (NoWeightsLeft())
-        {
-            Invoke("GameOver", 1f);
-
-        }
-        StopCoroutine(CheckGameStatus());
-
-    }
     private bool NoWeightsLeft()
     {
         return StackWeightManager.instance.CountWeightsLeft() == 0;
@@ -56,24 +49,31 @@ public class WoodTrigger : MonoBehaviour
         }
     }
 
-    private void BreakTheWood()
+    private IEnumerator BreakTheWood()
     {
+        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
         if (weightSum >= woodValue)//double check if it still on it
         {
             GetComponentInParent<Animator>().enabled = true;
             Destroy(transform.parent.gameObject, 1.1f);
             //ScoreManager.instance.incrementScore();
         }
+        StopCoroutine("BreakTheWood");
+
 
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
+        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
+
         if (NoWeightsLeft())//Double Check
         {
             InGameMenuController.instance.ShowGameOver();
             UIController.instance.SetMenuPanel();
         }
+        StopCoroutine("GameOver");
+
     }
 
 }
