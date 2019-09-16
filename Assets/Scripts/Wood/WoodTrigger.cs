@@ -7,7 +7,7 @@ public class WoodTrigger : MonoBehaviour
 {
     private float weightSum;
     private float woodValue;
-
+    
     void Start()
     {
         weightSum = 0;
@@ -18,8 +18,6 @@ public class WoodTrigger : MonoBehaviour
     {
         if (col.tag == "Weight")
         {
-            col.GetComponent<WeightController>().enabled = false;
-
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum += weightValue;
             if (weightSum >= woodValue)
@@ -34,16 +32,9 @@ public class WoodTrigger : MonoBehaviour
         }
         
     }
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (weightSum >= woodValue)
-        {
-            col.GetComponent<WeightController>().enabled = true;
-        }
-    }
+
     private bool NoWeightsLeft()
     {
-
         return StackWeightManager.instance.CountWeightsLeft() == 0 && IsAllWeightsDisabled();
     }
     private bool IsAllWeightsDisabled()
@@ -63,7 +54,6 @@ public class WoodTrigger : MonoBehaviour
     {
         if (col.tag == "Weight")
         {
-            col.GetComponent<WeightController>().enabled = true;
             float weightValue = col.GetComponent<WeightController>().Weight;
             weightSum -= weightValue;
         }

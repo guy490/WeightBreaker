@@ -35,8 +35,11 @@ public class StackWeightManager : MonoBehaviour
         float weight;
        foreach(Transform child in transform)
         {
-            weight = child.GetComponent<WeightGUIObject>().Weight;
-            AddWeightToList(weight, child.gameObject);
+            if (child.name != "PlusButton")
+            {
+                weight = child.GetComponent<WeightGUIObject>().Weight;
+                AddWeightToList(weight, child.gameObject);
+            }
         }
     }
     public void AddCollidedWeightToGUI(GameObject weightObj)
@@ -71,6 +74,6 @@ public class StackWeightManager : MonoBehaviour
 
     public int CountWeightsLeft()
     {
-        return transform.childCount;
+        return transform.childCount-1;
     }
 }
