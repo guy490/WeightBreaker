@@ -112,6 +112,12 @@ public class GameController : MonoBehaviour
 
         }
     }
+    public void QuitButton()
+    {
+
+        SceneManager.LoadScene("Menu");
+
+    }
 
     public GameObject GetWeightsContainer()
     {
