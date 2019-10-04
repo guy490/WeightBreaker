@@ -13,6 +13,11 @@ public class WeightController : MonoBehaviour
     [SerializeField]
     private TextMesh weightText;
     private Rigidbody2D rb;
+    private bool isMoving;
+    private const float noMovementThreshold = 0.002f;
+    private const int noMovementFrames = 3;
+    private float[] previousHeights = new float[noMovementFrames];
+    
     public float Weight
     {
         get
@@ -26,7 +31,13 @@ public class WeightController : MonoBehaviour
             weightText.text = weight + "KG";
         }
     }
-
+    void Awake()
+    {
+        for (int i = 0; i < previousHeights.Length; i++)
+        {
+            previousHeights[i] = 0;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +48,28 @@ public class WeightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Store the newest vector at the end of the list of vectors
+        for (int i = 0; i < previousHeights.Length - 1; i++)
+        {
+            previousHeights[i] = previousHeights[i + 1];
+        }
+        previousHeights[previousHeights.Length - 1] = gameObject.transform.position.y;
+
+        for (int i = 0; i < previousHeights.Length - 1; i++)
+        {
+            if (Mathf.Abs(previousHeights[i]-previousHeights[i + 1]) >= noMovementThreshold)
+            {
+                //The minimum movement has been detected between frames
+                isMoving = true;
+                break;
+            }
+            else
+            {
+                isMoving = false;
+            }
+        }
+
+
     }
     public void ThrowWeight()
     {
@@ -55,6 +87,11 @@ public class WeightController : MonoBehaviour
         {
             rb.AddForce(direction * distance*  force, ForceMode2D.Impulse);
         }
+    }
+    public bool WeightIsNotMoving()
+    {
+        Update();
+        return isMoving==false; 
     }
 
 }

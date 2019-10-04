@@ -18,8 +18,9 @@ public class GrassTrigger : MonoBehaviour
         {
             somthingOnFloor = true;
             col.GetComponent<WeightController>().enabled = true;
-            if (somthingOnFloor && ItsNotThePlaySelectedWeight(col))
+            if (somthingOnFloor && ItsNotThePlaySelectedWeight(col) && !col.GetComponent<Animator>().enabled)
             {
+                
                 col.GetComponent<Animator>().enabled = true;
                 StackWeightManager.instance.AddCollidedWeightToGUI(col.gameObject);
                 Destroy(col.gameObject,2f);

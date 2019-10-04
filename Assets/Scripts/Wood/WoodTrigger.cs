@@ -22,11 +22,11 @@ public class WoodTrigger : MonoBehaviour
             weightSum += weightValue;
             if (weightSum >= woodValue)
             {
-                StartCoroutine("BreakTheWood");
+                StartCoroutine("BreakTheWood",col.gameObject);
             }
             else if (NoWeightsLeft())
             {
-                StartCoroutine("GameOver");
+                StartCoroutine("GameOver", col.gameObject);
 
             }
         }
@@ -59,9 +59,11 @@ public class WoodTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator BreakTheWood()
+    private IEnumerator BreakTheWood(GameObject weight)
     {
-        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
+
+        yield return new WaitUntil(weight.GetComponent<WeightController>().WeightIsNotMoving);
+
         if (weightSum >= woodValue)//double check if it still on it
         {
             GetComponentInParent<Animator>().enabled = true;
@@ -73,9 +75,9 @@ public class WoodTrigger : MonoBehaviour
 
     }
 
-    private IEnumerator GameOver()
+    private IEnumerator GameOver(GameObject weight)
     {
-        yield return new WaitUntil(GameController.instance.ObjectIsNotMoving);
+        yield return new WaitUntil(weight.GetComponent<WeightController>().WeightIsNotMoving);
 
         if (NoWeightsLeft())//Double Check
         {

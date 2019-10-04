@@ -9,12 +9,9 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     [SerializeField]
-    private GameObject errorText;
-    [SerializeField]
     private float minimumDistance;
     [SerializeField]
     private GameObject weightsContainer;
-
 
     private GameObject selectedWeight;
     private GameObject selectedArrowWeight;
@@ -42,37 +39,17 @@ public class GameController : MonoBehaviour
         {
             return;
         }
-        if (ObjectIsNotMoving() )
+        if (ObjectIsOnGround())
         {
-            if (selectedWeight.GetComponent<WeightController>().enabled)
+            MouseButtonRecognition();
+            if (mouseIsDown)
             {
-                MouseButtonRecognition();
-                if (mouseIsDown)
-                {
-                    ControlTheArrow();
-                }
+                ControlTheArrow();
             }
+
         }
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                ShowErrorMessage();
-                Invoke("RemoveErrorMessage", 1.5f);
-            }
-        }
-
     }
 
-    private void ShowErrorMessage()
-    {
-        errorText.SetActive(true);
-    }
-    private void RemoveErrorMessage()
-    {
-        errorText.SetActive(false);
-
-    }
     private void MouseButtonRecognition()
     {
 
@@ -85,11 +62,12 @@ public class GameController : MonoBehaviour
         else if (Input.GetMouseButtonUp(0) && mouseIsDown)
         {
             float distance = Math.Abs(Vector2.Distance(MouseDownPosition, Input.mousePosition));
-            if(distance >= minimumDistance)
+            selectedArrowWeight.SetActive(false);
+
+            if (distance >= minimumDistance)
             {
                 ScoreManager.instance.incrementScore();
                 mouseIsDown = false;
-                selectedArrowWeight.SetActive(false);
                 selectedWeight.GetComponent<WeightController>().ThrowWeight();
             }
             
@@ -98,11 +76,9 @@ public class GameController : MonoBehaviour
 
     }
 
-    public bool ObjectIsNotMoving()
+    public bool ObjectIsOnGround()
     {
-        
-        Rigidbody2D rb = selectedWeight.GetComponent<Rigidbody2D>();
-        return rb.IsSleeping();
+        return selectedWeight.GetComponent<WeightController>().enabled;
     }
     private void ControlTheArrow()
     {
