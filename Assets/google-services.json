@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "866341593035",
+    "firebase_url": "https://weightbreaker-29157830.firebaseio.com",
+    "project_id": "weightbreaker-29157830",
+    "storage_bucket": "weightbreaker-29157830.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866341593035:android:ef2a99a8c68f1044dea04e",
+        "android_client_info": {
+          "package_name": "com.NorseCats.WeightBreaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866341593035-vcc3qsh4hvi3nul2tm28pdmur0loaoia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHITpSd_m5uHUkyA8Lz1rzhDPgyQ3l1M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866341593035-vcc3qsh4hvi3nul2tm28pdmur0loaoia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

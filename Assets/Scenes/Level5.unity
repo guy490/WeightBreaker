@@ -530,6 +530,11 @@ PrefabInstance:
       propertyPath: weight
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &1526604911
@@ -752,6 +757,11 @@ PrefabInstance:
       propertyPath: weight
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &1719570973
@@ -893,6 +903,11 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
       value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []

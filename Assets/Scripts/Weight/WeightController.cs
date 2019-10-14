@@ -12,11 +12,9 @@ public class WeightController : MonoBehaviour
     private float maxDistance;
     [SerializeField]
     private TextMesh weightText;
+    private GameObject woodStandingOn;
     private Rigidbody2D rb;
-    private bool isMoving;
-    private const float noMovementThreshold = 0.002f;
-    private const int noMovementFrames = 3;
-    private float[] previousHeights = new float[noMovementFrames];
+
     
     public float Weight
     {
@@ -33,10 +31,7 @@ public class WeightController : MonoBehaviour
     }
     void Awake()
     {
-        for (int i = 0; i < previousHeights.Length; i++)
-        {
-            previousHeights[i] = 0;
-        }
+        woodStandingOn = null;
     }
     // Start is called before the first frame update
     void Start()
@@ -48,28 +43,36 @@ public class WeightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Store the newest vector at the end of the list of vectors
-        for (int i = 0; i < previousHeights.Length - 1; i++)
-        {
-            previousHeights[i] = previousHeights[i + 1];
-        }
-        previousHeights[previousHeights.Length - 1] = gameObject.transform.position.y;
 
-        for (int i = 0; i < previousHeights.Length - 1; i++)
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D col = collision.collider;
+        if (col.tag == "Weight" && woodStandingOn != null)
         {
-            if (Mathf.Abs(previousHeights[i]-previousHeights[i + 1]) >= noMovementThreshold)
+            if (col.GetComponent<WeightController>().enabled)
             {
-                //The minimum movement has been detected between frames
-                isMoving = true;
-                break;
+                woodStandingOn = col.gameObject.GetComponent<WeightController>().woodStandingOn;
             }
             else
             {
-                isMoving = false;
+                woodStandingOn.GetComponentInChildren<WoodTrigger>().TriggerWoodCollisionEnter(collision);
             }
         }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        Collider2D col = collision.collider;
+        if (col.tag == "Weight" && woodStandingOn != null)
+        {
+            if (col.GetComponent<WeightController>().enabled)
+            {
+                woodStandingOn.GetComponentInChildren<WoodTrigger>().TriggerWoodCollisionExit(collision);
+                woodStandingOn = null;
+            }
 
-
+        }
     }
     public void ThrowWeight()
     {
@@ -88,10 +91,12 @@ public class WeightController : MonoBehaviour
             rb.AddForce(direction * distance*  force, ForceMode2D.Impulse);
         }
     }
-    public bool WeightIsNotMoving()
-    {
-        Update();
-        return isMoving==false; 
-    }
 
+    public void SetWoodStandingOn(GameObject wood)
+    {
+        if (wood == null || wood.tag == "Wood")
+        {
+            woodStandingOn = wood;
+        }
+    }
 }

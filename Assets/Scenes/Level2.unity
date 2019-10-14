@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: weight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &721423618
@@ -416,6 +421,11 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -752,6 +762,11 @@ PrefabInstance:
       propertyPath: weight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &1928226671
@@ -824,6 +839,11 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -982,6 +1002,11 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://weightbreaker-29157830.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">866341593035</string>
+  <string name="google_storage_bucket" translatable="false">weightbreaker-29157830.appspot.com</string>
+  <string name="project_id" translatable="false">weightbreaker-29157830</string>
+  <string name="google_api_key" translatable="false">AIzaSyAHITpSd_m5uHUkyA8Lz1rzhDPgyQ3l1M4</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAHITpSd_m5uHUkyA8Lz1rzhDPgyQ3l1M4</string>
+  <string name="google_app_id" translatable="false">1:866341593035:android:ef2a99a8c68f1044dea04e</string>
+  <string name="default_web_client_id" translatable="false">866341593035-vcc3qsh4hvi3nul2tm28pdmur0loaoia.apps.googleusercontent.com</string>
+</resources>

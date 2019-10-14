@@ -74,7 +74,17 @@ public class WeightGUIObject : MonoBehaviour, IPointerClickHandler
         }
 
         GameObject weightsContainer = GameController.instance.GetWeightsContainer();
-        GameObject obj = Instantiate(prefab, weightsContainer.transform);
+        GameObject obj;
+        if (selectedWeight.GetComponent<WeightController>().isActiveAndEnabled)
+        {
+            obj = Instantiate(prefab, GameController.instance.GetSelectedWeight().transform.position, GameController.instance.GetSelectedWeight().transform.rotation);
+
+        }
+        else
+        {
+            obj = Instantiate(prefab, new Vector3(0,-3.6f,0), Quaternion.identity);
+
+        }
         GameController.instance.SetSelectedWeight(obj);
 
     }

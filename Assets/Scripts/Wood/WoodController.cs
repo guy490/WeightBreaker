@@ -5,16 +5,17 @@ using UnityEngine;
 public class WoodController : MonoBehaviour
 {
     [SerializeField]
-    private float weight;
-    public float Weight
+    private float woodValue;
+    private float weightSum;
+    public float WoodValue
     {
         get
         {
-            return weight;
+            return woodValue;
         }
         set
         {
-            weight = value;
+            woodValue = value;
         }
     }
     [SerializeField]
@@ -23,15 +24,14 @@ public class WoodController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        woodText.text = Weight + "KG";
-
+        woodText.text = WoodValue + "KG";
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
+
     void OnDestroy()
     {
         if (NoWoodsLeft())

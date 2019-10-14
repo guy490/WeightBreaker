@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: weight
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &896795218
@@ -609,6 +614,11 @@ PrefabInstance:
       propertyPath: weight
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &1526604911
@@ -757,6 +767,11 @@ PrefabInstance:
       propertyPath: weight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460521c39e8a80e48b0a811ac7889da5, type: 3}
 --- !u!1001 &1928226671
@@ -829,6 +844,11 @@ PrefabInstance:
     - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
         type: 3}
       propertyPath: weight
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679323557062405433, guid: 460521c39e8a80e48b0a811ac7889da5,
+        type: 3}
+      propertyPath: woodValue
       value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
