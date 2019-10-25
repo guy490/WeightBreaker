@@ -72,6 +72,7 @@ public class WoodTrigger : MonoBehaviour
     }
     private void AddWeight(Collider2D col)
     {
+
         float weightValue = col.GetComponent<WeightController>().Weight;
         currectCollidedWeights.Add(col.gameObject);
         weightSum += weightValue;

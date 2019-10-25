@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WoodController : MonoBehaviour
 {
+    private static float offest = 0.01f;
     [SerializeField]
     private float woodValue;
     private float weightSum;
@@ -49,5 +50,26 @@ public class WoodController : MonoBehaviour
     private int WoodsLeft()
     {
         return WoodsManager.instance.WoodsLeft();
+    }
+
+    public void moveLeft()
+    {
+        Vector3 newPosition = new Vector3(transform.localPosition.x - offest, transform.localPosition.y, transform.localPosition.z);
+        transform.localPosition = newPosition;
+    }
+    public void moveRight()
+    {
+        Vector3 newPosition = new Vector3(transform.localPosition.x + offest, transform.localPosition.y, transform.localPosition.z);
+        transform.localPosition = newPosition;
+    }
+    public void moveUp()
+    {
+        Vector3 newPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + offest, transform.localPosition.z);
+        transform.localPosition = newPosition;
+    }
+    public void moveDown()
+    {
+        Vector3 newPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - offest, transform.localPosition.z);
+        transform.localPosition = newPosition;
     }
 }
